@@ -159,6 +159,40 @@ void menu_main() {
 
     #endif // !HAS_ENCODER_WHEEL && SDSUPPORT
 
+    #if BOTH(HAS_ENCODER_WHEEL, SDSUPPORT)
+    
+    if (!busy) {
+
+      // *** IF THIS SECTION IS CHANGED, REPRODUCE ABOVE ***
+
+      //
+      // Autostart
+      //
+      #if ENABLED(MENU_ADDAUTOSTART)
+        ACTION_ITEM(MSG_AUTOSTART, card.beginautostart);
+      #endif
+
+      if (card_detected) {
+        if (!card_open) {
+          #if PIN_EXISTS(SD_DETECT)
+            GCODES_ITEM(MSG_CHANGE_MEDIA, M21_STR);
+          #else
+            GCODES_ITEM(MSG_RELEASE_MEDIA, PSTR("M22"));
+          #endif
+          SUBMENU(MSG_MEDIA_MENU, TERN(PASSWORD_ON_SD_PRINT_MENU, password.media_gatekeeper, menu_media));
+        }
+      }
+      else {
+        #if PIN_EXISTS(SD_DETECT)
+          ACTION_ITEM(MSG_NO_MEDIA, nullptr);
+        #else
+          GCODES_ITEM(MSG_ATTACH_MEDIA, M21_STR);
+        #endif
+      }
+    }
+
+  #endif // HAS_ENCODER_WHEEL && SDSUPPORT
+
     if (TERN0(MACHINE_CAN_PAUSE, printingIsPaused()))
       ACTION_ITEM(MSG_RESUME_PRINT, ui.resume_print);
 
@@ -227,40 +261,6 @@ void menu_main() {
     else
       GCODES_ITEM(MSG_SWITCH_PS_ON, PSTR("M80"));
   #endif
-
-  #if BOTH(HAS_ENCODER_WHEEL, SDSUPPORT)
-
-    if (!busy) {
-
-      // *** IF THIS SECTION IS CHANGED, REPRODUCE ABOVE ***
-
-      //
-      // Autostart
-      //
-      #if ENABLED(MENU_ADDAUTOSTART)
-        ACTION_ITEM(MSG_AUTOSTART, card.beginautostart);
-      #endif
-
-      if (card_detected) {
-        if (!card_open) {
-          #if PIN_EXISTS(SD_DETECT)
-            GCODES_ITEM(MSG_CHANGE_MEDIA, M21_STR);
-          #else
-            GCODES_ITEM(MSG_RELEASE_MEDIA, PSTR("M22"));
-          #endif
-          SUBMENU(MSG_MEDIA_MENU, TERN(PASSWORD_ON_SD_PRINT_MENU, password.media_gatekeeper, menu_media));
-        }
-      }
-      else {
-        #if PIN_EXISTS(SD_DETECT)
-          ACTION_ITEM(MSG_NO_MEDIA, nullptr);
-        #else
-          GCODES_ITEM(MSG_ATTACH_MEDIA, M21_STR);
-        #endif
-      }
-    }
-
-  #endif // HAS_ENCODER_WHEEL && SDSUPPORT
 
   #if HAS_SERVICE_INTERVALS
     static auto _service_reset = [](const int index) {
