@@ -85,16 +85,16 @@
  */
 
 // Show the Marlin bootscreen on startup. ** ENABLE FOR PRODUCTION **
-#define SHOW_BOOTSCREEN
+// #define SHOW_BOOTSCREEN
 // #define SHOW_REAL_MARLIN_BOOTSCREEN
 
 // Show the bitmap in Marlin/_Bootscreen.h on startup.
-#define SHOW_CUSTOM_BOOTSCREEN
-#define CUSTOM_BOOTSCREEN_TIMEOUT 250
+// #define SHOW_CUSTOM_BOOTSCREEN
+// #define CUSTOM_BOOTSCREEN_TIMEOUT 250
 
 
 // Show the bitmap in Marlin/_Statusscreen.h on the status screen.
-#define CUSTOM_STATUS_SCREEN_IMAGE
+// #define CUSTOM_STATUS_SCREEN_IMAGE
 
 // #define MARLIN_SNAKE
 // #define MARLIN_INVADERS
@@ -902,7 +902,7 @@
 /**
  * The BLTouch probe uses a Hall effect sensor and emulates a servo.
  */
-//#define BLTOUCH
+// #define BLTOUCH
 
 /**
  * Pressure sensor with a BLTouch-like interface
@@ -1238,8 +1238,8 @@
 //#define AUTO_BED_LEVELING_3POINT
 //#define AUTO_BED_LEVELING_LINEAR
 //#define AUTO_BED_LEVELING_BILINEAR
-//#define AUTO_BED_LEVELING_UBL
-#define MESH_BED_LEVELING
+#define AUTO_BED_LEVELING_UBL
+// #define MESH_BED_LEVELING
 
 /**
  * Normally G28 leaves leveling disabled on completion. Enable
@@ -1353,7 +1353,7 @@
 #endif
 
 // Add a menu item to move between bed corners for manual bed adjustment
-#define LEVEL_BED_CORNERS
+// #define LEVEL_BED_CORNERS 
 
 #if ENABLED(LEVEL_BED_CORNERS)
   #define LEVEL_CORNERS_INSET_LFRB { 30, 30, 30, 30 } // (mm) Left, Front, Right, Back insets
@@ -1388,7 +1388,7 @@
 // - Move the Z probe (or nozzle) to a defined XY point before Z Homing.
 // - Prevent Z homing when the Z probe is outside bed area.
 //
-//#define Z_SAFE_HOMING
+#define Z_SAFE_HOMING
 
 #if ENABLED(Z_SAFE_HOMING)
   #define Z_SAFE_HOMING_X_POINT X_CENTER  // X point for Z homing
@@ -1511,7 +1511,7 @@
 #define PREHEAT_1_FAN_SPEED     0 // Value from 0 to 255
 
 #define PREHEAT_2_LABEL       "PETG"
-#define PREHEAT_2_TEMP_HOTEND 230
+#define PREHEAT_2_TEMP_HOTEND 250
 #define PREHEAT_2_TEMP_BED    110
 #define PREHEAT_2_FAN_SPEED     0 // Value from 0 to 255
 
