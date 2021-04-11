@@ -2433,10 +2433,5 @@
 // Only power servos during movement, otherwise leave off to prevent jitter
 //#define DEACTIVATE_SERVOS_AFTER_MOVE
 
-<<<<<<< HEAD
 // Allow servo angle to be edited and saved to EEPROM
 //#define EDITABLE_SERVO_ANGLES
-=======
-// Edit servo angles with M281 and save to EEPROM with M500
-//#define EDITABLE_SERVO_ANGLES
->>>>>>> 3e1b9e11d73fab93e44ede6768d0c51638e6bced
